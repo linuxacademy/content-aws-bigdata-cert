@@ -1,0 +1,32 @@
+{
+  "cloudwatch.emitMetrics": true,
+  "firehose.endpoint": "firehose.us-east-1.amazonaws.com",
+
+  "flows": [
+    {
+      "filePattern": "/var/log/apache.log*",
+      "deliveryStream": "linuxacademy-courses",
+      "partitionKeyOption": "RANDOM",
+      "initialPosition":"START_OF_FILE",
+      "dataProcessingOptions": [
+                {
+                    "optionName": "LOGTOJSON",
+                    "logFormat": "COMMONAPACHELOG"
+                }
+            ]
+    }
+  ]
+}
+
+
+
+{
+    "cloudwatch.emitMetrics": true,
+    "kinesis.endpoint": "kinesis.us-east-1.amazonaws.com",
+    "flows": [
+        {
+            "filePattern": "/var/log/apache.log*",
+            "kinesisStream": "delivery-1"
+        }
+    ]
+}
