@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 import time
 
-stream_name = 'delivery-1'
+stream_name = 'kinesis-1'
 
 kinesis_client = boto3.client('kinesis', region_name='us-east-1')
 
