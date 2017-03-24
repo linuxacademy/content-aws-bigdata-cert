@@ -18,7 +18,15 @@
     },
     {
       "filePattern": "/home/linuxacademy/apache.log*",
-      "kinesisStream": "kinesis-1"
+      "kinesisStream": "kinesis-1",
+      "partitionKeyOption": "RANDOM",
+      "initialPosition":"START_OF_FILE",
+      "dataProcessingOptions": [
+                {
+                    "optionName": "LOGTOJSON",
+                    "logFormat": "COMMONAPACHELOG"
+                }
+        ]
     }
 
   ]
