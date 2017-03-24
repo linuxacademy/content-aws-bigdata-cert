@@ -1,8 +1,6 @@
 {
   "cloudwatch.emitMetrics": true,
   "firehose.endpoint": "firehose.us-east-1.amazonaws.com",
-  "kinesis.endpoint": "kinesis.us-east-1.amazonaws.com",
-
   "flows": [
     {
       "filePattern": "/home/linuxacademy/apache.log*",
@@ -15,11 +13,6 @@
                     "logFormat": "COMMONAPACHELOG"
                 }
             ]
-    },
-    {
-      "filePattern": "/home/linuxacademy/apache.log*",
-      "kinesisStream": "kinesis-1"
     }
-
   ]
 }
