@@ -1,35 +1,63 @@
+from __future__ import print_function # Python 2/3 compatibility
 import boto3
+import json
+import decimal
+import sys
 
-# Get the service resource.
-dynamodb = boto3.resource('dynamodb')
+dynamodb = boto3.resource('dynamodb',  region_name='us-east-1', )
 
-# Create the DynamoDB table.
+
 table = dynamodb.create_table(
-    TableName='users',
-    KeySchema=[
-        {
-            'AttributeName': 'username',
-            'KeyType': 'HASH'
-        },
-        {
-            'AttributeName': 'last_name',
-            'KeyType': 'RANGE'
-        }
-    ],
-    AttributeDefinitions=[
-        {
-            'AttributeName': 'username',
-            'AttributeType': 'S'
-        },
-        {
-            'AttributeName': 'last_name',
-            'AttributeType': 'S'
-        },
+   TableName='Movies',
+   KeySchema=[
+       {
+           'AttributeName': 'year',
+           'KeyType': 'HASH'  #Partition key
+       },
+       {
+           'AttributeName': 'title',
+           'KeyType': 'RANGE'  #Sort key
+       }
+   ],
+   AttributeDefinitions=[
+       {
+           'AttributeName': 'year',
+           'AttributeType': 'N'
+       },
+       {
+           'AttributeName': 'title',
+           'AttributeType': 'S'
+       },
 
-    ],
-    ProvisionedThroughput={
-        'ReadCapacityUnits': 5,
-        'WriteCapacityUnits': 5
-    }
+   ],
+   ProvisionedThroughput={
+       'ReadCapacityUnits': 1,
+       'WriteCapacityUnits': 1
+   }
 )
- 
+
+# Wait until the table exists.
+table.meta.client.get_waiter('table_exists').wait(TableName='Movies')
+
+table = dynamodb.Table('Movies')
+
+i = 0
+with open("/home/linuxacademy/moviedata.json") as json_file:
+    i = i + 1
+    if i == 400:
+	sys.exit()
+    movies = json.load(json_file, parse_float = decimal.Decimal)
+    for movie in movies:
+        year = int(movie['year'])
+        title = movie['title']
+        info = movie['info']
+
+        print("Adding movie:", year, title)
+
+        table.put_item(
+           Item={
+               'year': year,
+               'title': title,
+               'info': info,
+            }
+        )
