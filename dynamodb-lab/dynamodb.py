@@ -44,7 +44,7 @@ table = dynamodb.Table('Movies')
 i = 0
 with open("/home/linuxacademy/moviedata.json") as json_file:
     i = i + 1
-    if i == 400:
+    if i == 100:
 	sys.exit()
     movies = json.load(json_file, parse_float = decimal.Decimal)
     for movie in movies:
