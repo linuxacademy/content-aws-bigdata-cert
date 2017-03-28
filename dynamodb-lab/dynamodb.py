@@ -43,11 +43,12 @@ table = dynamodb.Table('Movies')
 
 i = 0
 with open("/home/linuxacademy/moviedata.json") as json_file:
-    i = i + 1
-    if i == 100:
-	sys.exit()
+
     movies = json.load(json_file, parse_float = decimal.Decimal)
     for movie in movies:
+        i = i + 1
+        if i == 100:
+            sys.exit()
         year = int(movie['year'])
         title = movie['title']
         info = movie['info']
