@@ -3,6 +3,7 @@ import boto3
 import json
 import decimal
 import sys
+from time import sleep
 
 dynamodb = boto3.resource('dynamodb',  region_name='us-east-1', )
 
@@ -62,3 +63,4 @@ with open("/home/linuxacademy/moviedata.json") as json_file:
                'info': info,
             }
         )
+        sleep(.1)
