@@ -62,3 +62,4 @@ while dt < end:
             'Data': json.dumps(record)
         }
     )
+    print json.dumps(record)
