@@ -45,16 +45,16 @@ courses = [
 
 
 
-dt = datetime.datetime(2016, 12, 01)
-end = datetime.datetime(2017, 12, 30, 23, 59, 59)
-step = datetime.timedelta(seconds=60)
+dt = datetime.datetime(2017, 03, 01)
+end = datetime.datetime(2017, 03, 07, 23, 59, 59)
+step = datetime.timedelta(seconds=300)
 
 record = {}
 
 while dt < end:
     dt += step
     record['course'] = random.choice(courses)
-    record['active_users'] = random.randint(1, 100)
+    record['active_users'] = random.randint(1, 10)
     record['date_time'] = dt.strftime('%Y-%m-%d %H:%M:%S')
     response = client.put_record(
         DeliveryStreamName=DeliveryStreamName,
