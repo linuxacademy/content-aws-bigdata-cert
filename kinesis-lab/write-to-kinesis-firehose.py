@@ -62,4 +62,4 @@ while True:
             'Data': json.dumps(record)
         }
     )
-    print('PUTTING RECORD TO KINESIS: \n' + record)
+    print('PUTTING RECORD TO KINESIS: \n' + str(record))
