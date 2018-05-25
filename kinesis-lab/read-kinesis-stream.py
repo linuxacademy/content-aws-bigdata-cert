@@ -23,15 +23,17 @@ record_response = kinesis_client.get_records(
     ShardIterator=my_shard_iterator,
     Limit=1
 )
-print record_response['Records'][0]['Data']
+
 
 while 'NextShardIterator' in record_response:
     record_response = kinesis_client.get_records(
         ShardIterator=record_response['NextShardIterator'],
         Limit=1
     )
-
-    print record_response['Records'][0]['Data']
+    try: 
+        print record_response['Records'][0]['Data']
+    except Exception:
+        print "No data yet."
 
 
     time.sleep(1)
