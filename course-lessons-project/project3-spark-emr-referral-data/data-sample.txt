@@ -1,0 +1,3 @@
+advertiser, publisher, sale date, sale amount 
+"amicus", "babble.com", 02/05/2017, 27.12
+"tacklebox", "hiker blog", 02/06/2017, 11.13
