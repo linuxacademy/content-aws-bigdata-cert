@@ -19,3 +19,9 @@
 1. You can enter the PySpark shell with the `pyspark` command. This command starts up the PySpark shell and makes the Spark Context `sc` object available to you without having to do anything else.
 2. If you want to be a rebel, you can enter the Scala shell with the `spark-shell` command.
 
+## Processing Data with PySpark
+
+1. Load `data-sample.txt` into S3 through the AWS console or the AWS CLI
+2. Copy and paste the code from advertisers.py into the PySpark console
+3. 
+
