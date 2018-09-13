@@ -23,5 +23,5 @@
 
 1. Load `data-sample.txt` into S3 through the AWS console or the AWS CLI
 2. Copy and paste the code from advertisers.py into the PySpark console
-3. 
+3. See the output result to S3
 
