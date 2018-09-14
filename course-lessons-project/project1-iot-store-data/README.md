@@ -61,5 +61,49 @@ ssl.OPENSSL_VERSION
     Use the script to publish to the topic and see it publish live in the browser
 
 ## Create a Rule to Process the Data
+    Name - thermometer_rule
+    Attributes - *
+    OR Attributes - timestamp, temperature
+    Topic Filter - SeattleStoreTemp/1
+    Condition - wont use right now because we want all the data
+    Add action
+        Review integrations
+        Send message to Amazon Kinesis Firehose
+    Going to have to pause here and create a firehose 
 
 
+## Creating a Firehose Delivery Stream for our IoT Rule
+    Either Kinesis --> Firehose OR
+    "Create new Resource" on the Configure Action stuff in IoT
+    Create Stream
+        Stream Name - weather-data-stream
+        Direct Put
+    Process records 
+        Transform with Lambda - Off
+        Transform Records for Glue - Off
+    Destination 
+        Amazon S3
+        New S3 Bucket - la-big-data-seattle-weather-2018
+    Settings 
+        Buffer conditions 
+            5MB
+            300 seconds is fine
+        Compression & Encryption options - off
+        Error logging - Disabled
+        IAM Role - Create a new one and take alook at it
+    Review and create
+
+## Finish up our IoT Rule
+    Select the new stream name
+    Separator - Newline
+    Create a new role - iot-weather-data-role
+    Select the role - iot-weather-data-role
+    Add action
+    Create the rule
+
+## Testing our new IoT Rule
+    Start the device_script.py again
+    Check Firehose monitoring
+    Check S3 for the actual data
+    Note we could have delivered it directly with IoT
+    Can modify it with Firehose
