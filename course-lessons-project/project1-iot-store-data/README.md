@@ -60,6 +60,6 @@ ssl.OPENSSL_VERSION
         Change the Root CA, Private Key and Certificate paths
     Use the script to publish to the topic and see it publish live in the browser
 
-
+## Create a Rule to Process the Data
 
 
