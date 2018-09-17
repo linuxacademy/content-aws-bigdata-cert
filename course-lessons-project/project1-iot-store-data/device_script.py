@@ -12,13 +12,13 @@ CLIENT_NAME = "store-thermometer-seattle1"
 TOPIC = "SeattleStoreTemp/1"
 
 # Broker path is under AWS IoT > Settings (at the bottom left)
-BROKER_PATH = "a25u3mz04evknr-ats.iot.us-east-1.amazonaws.com"
+BROKER_PATH = "abcd34567efghi-jkl.iot.us-east-1.amazonaws.com"
 
 # RSA 2048 bit key: Amazon Root CA 1 found here:
 # https://docs.aws.amazon.com/iot/latest/developerguide/managing-device-certs.html
 ROOT_CA_PATH = './AmazonRootCA1.pem'
-PRIVATE_KEY_PATH = './e04047875c-private.pem.key'
-CERTIFICATE_PATH = './e04047875c-certificate.pem.crt'
+PRIVATE_KEY_PATH = './a0b1keyhash-private.pem.key'
+CERTIFICATE_PATH = './a0b1keyhash-certificate.pem.crt'
 
 IoTclient = AWSIoTMQTTClient(CLIENT_NAME)
 IoTclient.configureEndpoint(BROKER_PATH, 8883)
