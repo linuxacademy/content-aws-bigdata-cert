@@ -3,12 +3,12 @@
 ## Creating Things, Certificates, and Policies
 
 1. IoT --> Manage --> Show me later --> Register a thing --> Create a single thing
-2. Create a thing called `store-thermometer-seattle1`
-    Name it `store-thermometer-seattle1`
+2. Create a thing called `store-sensor-seattle1`
+    Name it `store-sensor-seattle1`
 
     Type --> Add a new type
-        Name - `thermometer`
-        Description - A thermometer
+        Name - `sensor`
+        Description - A sensor
     
     Group 
         Name --> Seattle
@@ -24,7 +24,7 @@
 4. Create a policy for the thing and attach it to the certificate
     Policy for the thing
         Main IoT page > Secure > Policies > Create a policy
-        Name - thermometer-policy
+        Name - sensor-policy
         Action - iot:*
         Resource ARN - *
             NOTE VERY PERMISSIVE DON'T DO IN PRODUCTION
@@ -44,7 +44,7 @@
 
 ```bash
 python3 -m venv venv
-source venb/bin/activate
+source venv/bin/activate
 pip install AWSIoTPythonSDK
 ```
 
@@ -61,7 +61,7 @@ ssl.OPENSSL_VERSION
     Use the script to publish to the topic and see it publish live in the browser
 
 ## Create a Rule to Process the Data
-    Name - thermometer_rule
+    Name - sensor_rule
     Attributes - *
     OR Attributes - timestamp, temperature
     Topic Filter - SeattleStoreTemp/1

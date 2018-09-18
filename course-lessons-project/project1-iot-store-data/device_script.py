@@ -12,13 +12,13 @@ CLIENT_NAME = "store-thermometer-seattle1"
 TOPIC = "SeattleStoreTemp/1"
 
 # Broker path is under AWS IoT > Settings (at the bottom left)
-BROKER_PATH = "abcd34567efghi-jkl.iot.us-east-1.amazonaws.com"
+BROKER_PATH = "a2hyr29arhu1ac-ats.iot.us-east-1.amazonaws.com"
 
 # RSA 2048 bit key: Amazon Root CA 1 found here:
 # https://docs.aws.amazon.com/iot/latest/developerguide/managing-device-certs.html
 ROOT_CA_PATH = './AmazonRootCA1.pem'
-PRIVATE_KEY_PATH = './a0b1keyhash-private.pem.key'
-CERTIFICATE_PATH = './a0b1keyhash-certificate.pem.crt'
+PRIVATE_KEY_PATH = './14e764a6a2-private.pem.key'
+CERTIFICATE_PATH = './14e764a6a2-certificate.pem.crt'
 
 IoTclient = AWSIoTMQTTClient(CLIENT_NAME)
 IoTclient.configureEndpoint(BROKER_PATH, 8883)
@@ -28,7 +28,7 @@ IoTclient.configureCredentials(
     CERTIFICATE_PATH
 )
 
-# Allow the device to queue infiited messages
+# Allow the device to queue infinite messages
 IoTclient.configureOfflinePublishQueueing(-1)
 
 # Number of messages to send after a connection returns
