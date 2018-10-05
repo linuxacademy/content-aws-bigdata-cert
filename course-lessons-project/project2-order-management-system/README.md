@@ -22,6 +22,15 @@ pip install -r requirements.txt
 3. Check that the credentials are correct with `aws dynamodb list-tables` to check that the table is there.
 4. Run the script `python orders.py` OR `import orders` and `orders.write_orders()`
 5. Pause it after a few entries and check that it works
+```bash
+aws dynamodbstreams list-streams
+aws dynamodbstreams describe-stream --stream-arn STREAM_ARN
+# with most recent shard id:
+aws dynamodbstreams get-shard-iterator --stream-arn STREAM_ARN --shard-id SHARD_ID --shard-iterator-type LATEST
+# Use initial shard iterator, show nothing there,
+# then add records and use the next shard iterator
+aws dynamodbstreams get-records --shard-iterator "QUOTED_SHARD_ITERATOR"
+```
 6. Move on to creating the Lambda Function and ElasticSearch Cluster
 
 ## Creating the Lambda Function
