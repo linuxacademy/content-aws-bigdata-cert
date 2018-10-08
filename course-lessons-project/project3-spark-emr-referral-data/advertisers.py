@@ -5,7 +5,7 @@ import json
 
 # Get raw data
 # Assumes headers are not present in files that are processed
-rawAdPubData = sc.textFile("s3://temptemplatemptemp2018/data.csv")
+rawAdPubData = sc.textFile("s3://penguin-outfitters-adpubdata/data.csv")
 
 cleanAdPubData = rawAdPubData.map(lambda line: list(csv.reader([line])))
 
@@ -40,6 +40,6 @@ pubDailyPaymentsFlat = publisherDailyPayments.map(toJSONLine)
 
 # Collect all the data into a single file (not usually what you'd do)
 pubDailyPaymentsFlat.coalesce(1).toDF().write.save(
-    "s3://temptemplatemptemp2018/adPubResultsjsontesttwo", 
+    "s3://penguin-outfitters-adpubdata/adPubResultsjson", 
     format="json"
 )
