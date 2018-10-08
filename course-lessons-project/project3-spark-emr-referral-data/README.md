@@ -21,7 +21,10 @@
 
 ## Processing Data with PySpark
 
-1. Load `data-sample.txt` into S3 through the AWS console or the AWS CLI
+0. Create a new bucket with `aws s3 mb s3://penguin-outfitters-adpubdata`
+1. Load `data.csv` into S3 through the AWS console or the AWS CLI with `aws s3 cp ./data.csv s3://penguin-outfitters-adpubdata/data.csv`
 2. Copy and paste the code from advertisers.py into the PySpark console
 3. See the output result to S3
+
+
 

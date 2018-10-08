@@ -9,7 +9,7 @@
 <canvas id="myChart" width="400" height="400"></canvas>
 
 <script type="text/javascript">
-$.get("https://s3.amazonaws.com/adPubDataPenguinOutfitters/KEY_NAME_OF_FILE", function(json) {
+$.get("https://s3.amazonaws.com/penguin-outfitters-adpubdata/KEY_NAME_OF_FILE", function(json) {
     cleanedJson = ('[' + json.replace(/\n/g, ',')).slice(0,-1) + ']'
     var parsedJson = JSON.parse(cleanedJson)
     for (i = 0; i < parsedJson.length; i++){
