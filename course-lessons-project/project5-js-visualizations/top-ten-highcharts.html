@@ -1,0 +1,76 @@
+<html>
+<head>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+</head>
+
+<body>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+$.get("https://s3.amazonaws.com/adPubDataPenguinOutfitters/KEY_NAME_OF_FILE", function(json) {
+    cleanedJson = ('[' + json.replace(/\n/g, ',')).slice(0,-1) + ']'
+    var parsedJson = JSON.parse(cleanedJson)
+    for (i = 0; i < parsedJson.length; i++){
+        parsedJson[i] = _.mapObject(parsedJson[i], function(val, key){
+            if (key == '_3') {
+                return parseFloat(val)
+            } else { 
+                return val
+            }
+        })
+    }
+    var sortedSlicedJson = _.sortBy(parsedJson, '_3').slice(-10)
+    var topNames = _.pluck(sortedSlicedJson, '_1')
+    var topValues = _.pluck(sortedSlicedJson, '_3')
+    console.log(topValues)
+    console.log(topNames)
+
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Top 10 Affiliate Days'
+    },
+    subtitle: {
+        text: 'Source: Penguin Outfitters'
+    },
+    xAxis: {
+        categories: topNames,
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Amount ($)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>${point.y:.2f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Payout',
+        data: topValues
+    }]
+});
+})
+
+</script>
+
+</body>
+</html>
