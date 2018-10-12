@@ -37,7 +37,7 @@ aws dynamodbstreams get-records --shard-iterator "QUOTED_SHARD_ITERATOR"
 1. Build the function package with
 ```bash
 mkdir build && cd build
-pip install -r ../dev-requirements.txt -t .
+pip install -r ../prod-requirements.txt -t .
 cp ../lambda_function.py .
 zip -r ../package.zip ./* 
 cd ..
