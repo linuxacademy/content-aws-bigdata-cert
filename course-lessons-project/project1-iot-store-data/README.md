@@ -108,3 +108,20 @@ ssl.OPENSSL_VERSION
     Note we could have delivered it directly with IoT
     Can modify it with Firehose
 
+
+## Kinesis Analytics Streams
+
+```sql
+CREATE OR REPLACE STREAM "DESTINATION_SQL_STREAM" (
+    max_temp REAL,
+    min_temp REAL
+);
+
+CREATE OR REPLACE PUMP "STREAM_PUMP" AS INSERT INTO "DESTINATION_SQL_STREAM"
+SELECT STREAM   
+    MAX("max_temperature") as max_temp,
+    MIN("min_temperature") as min_temp
+FROM "SOURCE_SQL_STREAM_001"
+GROUP BY 
+    FLOOR(("SOURCE_SQL_STREAM_001".ROWTIME - TIMESTAMP '1970-01-01 00:00:00') SECOND / 10 TO SECOND);
+```
