@@ -13,4 +13,4 @@ requests-aws4auth==0.9
 s3transfer==0.1.13
 six==1.11.0
 text-unidecode==1.2
-urllib3==1.23
+urllib3==1.26.5
